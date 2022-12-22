@@ -1,7 +1,8 @@
 import { CancelNotification } from '@application/use-cases/cancel-notification';
+import { CountRecipientNotifications } from '@application/use-cases/count-recipient-notifications';
 import { SendNotification } from '@application/use-cases/send-notification';
 import { CreateNotificationBody } from '@infra/create-notification-body';
-import { Body, Controller, Post, Patch, Param } from '@nestjs/common';
+import { Body, Controller, Post, Patch, Param, Get } from '@nestjs/common';
 import { NotificationViewModel } from '../view-models/notification-view-model';
 
 @Controller('notifications')
@@ -9,6 +10,7 @@ export class NotificationsController {
   constructor(
     private sendNotification: SendNotification,
     private cancelNotification: CancelNotification,
+    private countRecipientNotifications: CountRecipientNotifications,
   ) {}
 
   @Patch(':id/cancel')
@@ -16,6 +18,17 @@ export class NotificationsController {
     await this.cancelNotification.execute({
       notificationId: id,
     });
+  }
+
+  @Get('count/from/:recipientId')
+  async countFromRecipient(@Param('recipientId') recipientId: string) {
+    const { count } = await this.countRecipientNotifications.execute({
+      recipientId,
+    });
+
+    return {
+      count,
+    };
   }
 
   @Post()
