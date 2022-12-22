@@ -12,8 +12,8 @@ import { NotificationViewModel } from '../view-models/notification-view-model';
 export class NotificationsController {
   constructor(
     private sendNotification: SendNotification,
-    private cancelNotification: CancelNotification,
     private countRecipientNotifications: CountRecipientNotifications,
+    private cancelNotification: CancelNotification,
     private getRecipientNotifications: GetRecipientNotifications,
     private readNotification: ReadNotification,
     private unreadNotification: UnreadNotification,
