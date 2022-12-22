@@ -4,7 +4,7 @@ import { GetRecipientNotifications } from '@application/use-cases/get-recipient-
 import { ReadNotification } from '@application/use-cases/read-notification';
 import { SendNotification } from '@application/use-cases/send-notification';
 import { UnreadNotification } from '@application/use-cases/unread-notification';
-import { CreateNotificationBody } from '@infra/create-notification-body';
+import { CreateNotificationBody } from '@infra/http/dtos/create-notification-body';
 import { Body, Controller, Post, Patch, Param, Get } from '@nestjs/common';
 import { NotificationViewModel } from '../view-models/notification-view-model';
 
